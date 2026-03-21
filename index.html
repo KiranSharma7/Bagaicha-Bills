@@ -2,8 +2,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bagaicha Bliss | Origin</title>
-    <script src="https://cdn.tailwindcss.com" defer></script>
-    <script src="https://unpkg.com/lucide@latest" defer></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
     <style>
       @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-thin.otf') format('opentype'); font-weight: 100; font-style: normal; }
       @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-light.otf') format('opentype'); font-weight: 300; font-style: normal; }
@@ -518,7 +518,8 @@
         h.style.fontSize = lo + 'px';
       }
       fitHeadline();
-      document.fonts.ready.then(fitHeadline);
+      document.fonts.ready.then(function() { fitHeadline(); drawTimelineLine(); });
+      window.addEventListener('load', fitHeadline);
       window.addEventListener('resize', fitHeadline);
 
       // Draw separate dashed diagonal lines between each step pair
