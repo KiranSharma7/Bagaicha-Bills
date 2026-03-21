@@ -1,0 +1,1453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bagaicha Bliss — Design System Reference</title>
+
+  <!-- Fonts -->
+  <style>
+    @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-thin.otf') format('opentype'); font-weight: 100; font-style: normal; }
+    @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-light.otf') format('opentype'); font-weight: 300; font-style: normal; }
+    @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-regular.otf') format('opentype'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-medium.otf') format('opentype'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-semibold.otf') format('opentype'); font-weight: 600; font-style: normal; }
+    @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-bold.otf') format('opentype'); font-weight: 700; font-style: normal; }
+    @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-black.otf') format('opentype'); font-weight: 900; font-style: normal; }
+
+    @font-face { font-family: 'Neue Haas Grotesk Text'; src: url('Fonts/Neue_Haas_Grotesk_Collection/Neue Haas Grotesk Text Family/NeueHaasGrotText-55Roman-Trial.otf') format('opentype'); font-weight: 400; font-style: normal; }
+    @font-face { font-family: 'Neue Haas Grotesk Text'; src: url('Fonts/Neue_Haas_Grotesk_Collection/Neue Haas Grotesk Text Family/NeueHaasGrotText-56Italic-Trial.otf') format('opentype'); font-weight: 400; font-style: italic; }
+    @font-face { font-family: 'Neue Haas Grotesk Text'; src: url('Fonts/Neue_Haas_Grotesk_Collection/Neue Haas Grotesk Text Family/NeueHaasGrotText-65Medium-Trial.otf') format('opentype'); font-weight: 500; font-style: normal; }
+    @font-face { font-family: 'Neue Haas Grotesk Text'; src: url('Fonts/Neue_Haas_Grotesk_Collection/Neue Haas Grotesk Text Family/NeueHaasGrotText-66MediumItalic-Trial.otf') format('opentype'); font-weight: 500; font-style: italic; }
+    @font-face { font-family: 'Neue Haas Grotesk Text'; src: url('Fonts/Neue_Haas_Grotesk_Collection/Neue Haas Grotesk Text Family/NeueHaasGrotText-75Bold-Trial.otf') format('opentype'); font-weight: 700; font-style: normal; }
+    @font-face { font-family: 'Neue Haas Grotesk Text'; src: url('Fonts/Neue_Haas_Grotesk_Collection/Neue Haas Grotesk Text Family/NeueHaasGrotText-76BoldItalic-Trial.otf') format('opentype'); font-weight: 700; font-style: italic; }
+  </style>
+
+  <style>
+    /* ═══════════════════════════════════════════════════
+       CSS CUSTOM PROPERTIES — Design Tokens
+       These mirror the Tailwind config for vanilla CSS usage
+       ═══════════════════════════════════════════════════ */
+
+    :root {
+      /* Coffee Browns */
+      --coffee-50:  #FAF6F1;
+      --coffee-100: #F3ECE1;
+      --coffee-200: #E5D5BF;
+      --coffee-300: #D4BA96;
+      --coffee-400: #A8845A;
+      --coffee-500: #7A5C3A;
+      --coffee-600: #5E4429;
+      --coffee-700: #46321D;
+      --coffee-800: #2E2114;
+      --coffee-900: #1A120A;
+      --coffee-950: #0F0A06;
+
+      /* Organic Greens */
+      --leaf-50:  #F4F8F0;
+      --leaf-100: #E5EDDB;
+      --leaf-200: #CDDDBB;
+      --leaf-300: #A8C48E;
+      --leaf-400: #7BA35B;
+      --leaf-500: #5A7F3C;
+      --leaf-600: #466530;
+      --leaf-700: #354D24;
+      --leaf-800: #263619;
+      --leaf-900: #1A2511;
+
+      /* Cherry Reds */
+      --cherry-400: #D4543A;
+      --cherry-500: #B8412B;
+      --cherry-600: #943321;
+      --cherry-700: #6E2618;
+
+      /* Creams */
+      --cream-50:  #FFFDF9;
+      --cream-100: #FDF8F0;
+      --cream-200: #F5EDE0;
+      --cream-300: #E8DCC9;
+
+      /* Ink */
+      --ink:       #1A120A;
+      --ink-light: #5E4429;
+      --ink-muted: #8B7355;
+
+      /* Typography */
+      --font-heading: 'Recoleta', Georgia, 'Times New Roman', serif;
+      --font-body: 'Neue Haas Grotesk Text', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      --font-accent: 'Recoleta', Georgia, serif;
+
+      /* Spacing */
+      --section: clamp(5rem, 12vw, 10rem);
+      --section-sm: clamp(3rem, 8vw, 6rem);
+      --block: clamp(2rem, 4vw, 3.5rem);
+      --gutter: clamp(1.5rem, 3vw, 2.5rem);
+
+      /* Easing */
+      --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+      --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-in-out-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+
+      /* Shadows */
+      --shadow-warm: 0 4px 20px rgba(122, 92, 58, 0.08);
+      --shadow-warm-lg: 0 8px 40px rgba(122, 92, 58, 0.12);
+      --shadow-warm-xl: 0 16px 60px rgba(122, 92, 58, 0.16);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       BASE STYLES
+       ═══════════════════════════════════════════════════ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--ink);
+      background-color: var(--cream-50);
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* Grain texture overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.35;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    }
+
+    /* ═══════════════════════════════════════════════════
+       REFERENCE PAGE LAYOUT
+       ═══════════════════════════════════════════════════ */
+
+    .ds-page {
+      max-width: 90rem;
+      margin: 0 auto;
+    }
+
+    .ds-header {
+      background: linear-gradient(180deg, var(--coffee-900) 0%, var(--coffee-800) 100%);
+      color: var(--cream-50);
+      padding: clamp(3rem, 8vw, 6rem) var(--gutter);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .ds-header::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--coffee-400), transparent);
+    }
+
+    .ds-header h1 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      margin-bottom: 1rem;
+    }
+
+    .ds-header p {
+      font-size: 1rem;
+      color: var(--coffee-300);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .ds-section {
+      padding: var(--section) var(--gutter);
+      border-bottom: 1px solid var(--cream-300);
+    }
+
+    .ds-section:last-child { border-bottom: none; }
+
+    .ds-section-title {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: var(--block);
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--coffee-500);
+      display: inline-block;
+    }
+
+    .ds-section-desc {
+      max-width: 42rem;
+      color: var(--ink-light);
+      margin-bottom: var(--block);
+      font-size: 1rem;
+      line-height: 1.7;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       01. COLOR PALETTE
+       ═══════════════════════════════════════════════════ */
+
+    .color-group {
+      margin-bottom: var(--block);
+    }
+
+    .color-group-label {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--ink);
+    }
+
+    .color-row {
+      display: flex;
+      gap: 0;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: var(--shadow-warm);
+    }
+
+    .color-swatch {
+      flex: 1;
+      min-height: 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 0.5rem;
+      font-size: 0.625rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      font-family: var(--font-body);
+    }
+
+    .color-swatch span {
+      opacity: 0.8;
+    }
+
+    .color-swatch.light-text { color: var(--cream-50); }
+    .color-swatch.dark-text  { color: var(--coffee-900); }
+
+    /* ═══════════════════════════════════════════════════
+       02. TYPOGRAPHY
+       ═══════════════════════════════════════════════════ */
+
+    .type-specimen {
+      margin-bottom: 3rem;
+    }
+
+    .type-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 0.5rem;
+      font-family: var(--font-body);
+    }
+
+    .type-meta {
+      font-size: 0.75rem;
+      color: var(--ink-muted);
+      margin-top: 0.5rem;
+      font-family: var(--font-body);
+    }
+
+    .type-display-xl {
+      font-family: var(--font-heading);
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .type-display-lg {
+      font-family: var(--font-heading);
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+    }
+
+    .type-display {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 4.5vw, 4rem);
+      line-height: 1.0;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+    }
+
+    .type-heading-xl {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+    }
+
+    .type-heading-lg {
+      font-family: var(--font-heading);
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+    }
+
+    .type-heading {
+      font-family: var(--font-heading);
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      line-height: 1.2;
+    }
+
+    .type-accent {
+      font-family: var(--font-accent);
+      font-style: italic;
+    }
+
+    .type-overline {
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+    }
+
+    .type-body-lg {
+      font-family: var(--font-body);
+      font-size: 1.125rem;
+      line-height: 1.7;
+      color: var(--ink-light);
+    }
+
+    .type-body {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.7;
+      color: var(--ink-light);
+    }
+
+    .type-body-sm {
+      font-family: var(--font-body);
+      font-size: 0.875rem;
+      line-height: 1.6;
+      color: var(--ink-muted);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       03. COMPONENTS
+       ═══════════════════════════════════════════════════ */
+
+    .component-grid {
+      display: grid;
+      gap: var(--block);
+    }
+
+    /* --- Buttons --- */
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.875rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      transition: all 0.4s var(--ease-smooth);
+    }
+
+    .btn-primary {
+      background: var(--coffee-700);
+      color: var(--cream-50);
+      padding: 1rem 2.5rem;
+      border-radius: 0;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: var(--coffee-500);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.5s var(--ease-out-expo);
+    }
+
+    .btn-primary:hover::before {
+      transform: scaleX(1);
+    }
+
+    .btn-primary span { position: relative; z-index: 1; }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--coffee-700);
+      padding: 0.875rem 2.25rem;
+      border: 1.5px solid var(--coffee-400);
+      border-radius: 0;
+    }
+
+    .btn-outline:hover {
+      background: var(--coffee-700);
+      color: var(--cream-50);
+      border-color: var(--coffee-700);
+    }
+
+    .btn-text {
+      background: none;
+      color: var(--coffee-600);
+      padding: 0.5rem 0;
+      border-bottom: 1.5px solid var(--coffee-300);
+      border-radius: 0;
+      letter-spacing: 0.1em;
+    }
+
+    .btn-text:hover {
+      color: var(--coffee-800);
+      border-bottom-color: var(--coffee-800);
+    }
+
+    .btn-accent {
+      background: var(--cherry-500);
+      color: var(--cream-50);
+      padding: 1rem 2.5rem;
+      border-radius: 0;
+    }
+
+    .btn-accent:hover {
+      background: var(--cherry-600);
+    }
+
+    /* --- Overline with line --- */
+    .overline-accent {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-family: var(--font-body);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--coffee-400);
+    }
+
+    .overline-accent::before {
+      content: '';
+      width: 2.5rem;
+      height: 1.5px;
+      background: var(--coffee-400);
+      flex-shrink: 0;
+    }
+
+    /* --- Step number --- */
+    .step-indicator {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-family: var(--font-body);
+      font-weight: 500;
+      font-size: 0.8rem;
+      letter-spacing: 0.15em;
+      color: var(--ink-muted);
+    }
+
+    .step-indicator .num {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--coffee-300);
+      line-height: 1;
+    }
+
+    .step-indicator .line {
+      width: 3rem;
+      height: 1px;
+      background: var(--coffee-300);
+    }
+
+    /* --- Divider --- */
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--coffee-300), transparent);
+      margin: 2rem 0;
+    }
+
+    .divider-ornament {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      color: var(--coffee-300);
+    }
+
+    .divider-ornament::before,
+    .divider-ornament::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--coffee-300);
+    }
+
+    .divider-ornament svg {
+      width: 1.25rem;
+      height: 1.25rem;
+      fill: var(--coffee-400);
+      flex-shrink: 0;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       04. HERO MOCK
+       ═══════════════════════════════════════════════════ */
+
+    .mock-hero {
+      background: linear-gradient(180deg, rgba(26,18,10,0.75) 0%, rgba(26,18,10,0.5) 40%, rgba(26,18,10,0.85) 100%),
+                  url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?w=1920&q=80') center / cover;
+      color: var(--cream-50);
+      min-height: 80vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 4rem var(--gutter);
+      position: relative;
+    }
+
+    .mock-hero .overline-accent {
+      color: var(--coffee-300);
+      margin-bottom: 1.5rem;
+      justify-content: center;
+    }
+
+    .mock-hero .overline-accent::before {
+      background: var(--coffee-300);
+    }
+
+    .mock-hero h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(3rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 50rem;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .mock-hero p {
+      font-size: 1.0625rem;
+      color: var(--cream-200);
+      max-width: 32rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    /* --- Navbar mock --- */
+    .mock-nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem var(--gutter);
+      font-family: var(--font-body);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--cream-100);
+    }
+
+    .mock-nav-logo {
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      letter-spacing: 0;
+      text-transform: none;
+    }
+
+    .mock-nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .mock-nav-links a {
+      color: var(--cream-200);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .mock-nav-links a:hover { color: var(--cream-50); }
+
+    /* ═══════════════════════════════════════════════════
+       05. SECTION MOCKS
+       ═══════════════════════════════════════════════════ */
+
+    .mock-section {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+
+    .mock-brand-story {
+      text-align: center;
+      padding: var(--section) var(--gutter);
+      max-width: 42rem;
+      margin: 0 auto;
+    }
+
+    .mock-brand-story .overline-accent {
+      justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .mock-brand-story h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      line-height: 1.1;
+      margin-bottom: 1.5rem;
+    }
+
+    .mock-brand-story p {
+      font-size: 1.0625rem;
+      color: var(--ink-light);
+      line-height: 1.8;
+    }
+
+    /* Process step mock */
+    .mock-process {
+      padding: var(--section-sm) var(--gutter);
+    }
+
+    .mock-process-header {
+      text-align: center;
+      margin-bottom: var(--section-sm);
+    }
+
+    .mock-process-header h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.8rem, 3.5vw, 3rem);
+      line-height: 1.1;
+      margin-top: 1rem;
+    }
+
+    .process-step {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--gutter);
+      align-items: center;
+      margin-bottom: var(--section-sm);
+    }
+
+    .process-step:nth-child(even) .process-step-image {
+      order: -1;
+    }
+
+    .process-step-image {
+      aspect-ratio: 4 / 3;
+      background: var(--coffee-200);
+      border-radius: 0.25rem;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .process-step-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .process-step-content {
+      padding: 0 clamp(1rem, 3vw, 3rem);
+    }
+
+    .process-step-content .step-indicator {
+      margin-bottom: 1.5rem;
+    }
+
+    .process-step-content h4 {
+      font-family: var(--font-heading);
+      font-size: clamp(1.25rem, 2vw, 1.75rem);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+
+    .process-step-content p {
+      color: var(--ink-light);
+      line-height: 1.8;
+    }
+
+    /* Quote section mock */
+    .mock-quote {
+      background: var(--coffee-900);
+      color: var(--cream-50);
+      padding: var(--section) var(--gutter);
+      text-align: center;
+    }
+
+    .mock-quote blockquote {
+      font-family: var(--font-accent);
+      font-style: italic;
+      font-size: clamp(1.5rem, 3vw, 2.5rem);
+      line-height: 1.4;
+      max-width: 48rem;
+      margin: 0 auto;
+      letter-spacing: -0.01em;
+    }
+
+    .mock-quote cite {
+      display: block;
+      margin-top: 1.5rem;
+      font-family: var(--font-body);
+      font-style: normal;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--coffee-400);
+    }
+
+    /* Big statement mock */
+    .mock-statement {
+      padding: var(--section) var(--gutter);
+      text-align: center;
+    }
+
+    .mock-statement h3 {
+      font-family: var(--font-heading);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      max-width: 50rem;
+      margin: 0 auto;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       06. SPACING VISUALIZATION
+       ═══════════════════════════════════════════════════ */
+
+    .spacing-demo {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .spacing-bar-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .spacing-bar-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--ink-muted);
+      width: 7rem;
+      flex-shrink: 0;
+      text-align: right;
+    }
+
+    .spacing-bar {
+      height: 2rem;
+      background: linear-gradient(90deg, var(--coffee-400), var(--coffee-200));
+      border-radius: 0.25rem;
+      position: relative;
+    }
+
+    .spacing-bar-value {
+      position: absolute;
+      right: 0.75rem;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.65rem;
+      font-weight: 600;
+      color: var(--cream-50);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       07. SHADOW SAMPLES
+       ═══════════════════════════════════════════════════ */
+
+    .shadow-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr));
+      gap: 2rem;
+    }
+
+    .shadow-card {
+      background: var(--cream-50);
+      padding: 2rem;
+      border-radius: 0.75rem;
+      text-align: center;
+    }
+
+    .shadow-card .label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-top: 1rem;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       08. GSAP ANIMATION REFERENCE
+       ═══════════════════════════════════════════════════ */
+
+    .animation-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+      gap: 1.5rem;
+    }
+
+    .anim-card {
+      background: var(--cream-100);
+      border: 1px solid var(--cream-300);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+    }
+
+    .anim-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .anim-card p {
+      font-size: 0.85rem;
+      color: var(--ink-light);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+
+    .anim-card code {
+      display: block;
+      background: var(--coffee-900);
+      color: var(--leaf-300);
+      padding: 0.75rem;
+      border-radius: 0.25rem;
+      font-size: 0.7rem;
+      line-height: 1.5;
+      overflow-x: auto;
+      white-space: pre;
+    }
+
+    /* ═══════════════════════════════════════════════════
+       09. DARK SECTIONS
+       ═══════════════════════════════════════════════════ */
+
+    .ds-section.dark {
+      background: var(--coffee-900);
+      color: var(--cream-50);
+    }
+
+    .ds-section.dark .ds-section-title {
+      color: var(--coffee-300);
+      border-bottom-color: var(--coffee-500);
+    }
+
+    .ds-section.dark .ds-section-desc {
+      color: var(--cream-200);
+    }
+
+    /* ═══════════════════════════════════════════════════
+       RESPONSIVE
+       ═══════════════════════════════════════════════════ */
+
+    @media (max-width: 768px) {
+      .process-step {
+        grid-template-columns: 1fr;
+      }
+      .process-step:nth-child(even) .process-step-image {
+        order: 0;
+      }
+      .mock-nav-links { display: none; }
+      .color-row { flex-wrap: wrap; }
+      .color-swatch { min-width: 3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="ds-page">
+
+    <!-- ═══ HEADER ═══ -->
+    <header class="ds-header">
+      <h1>Bagaicha Bliss</h1>
+      <p>Design System Reference</p>
+    </header>
+
+    <!-- ═══ 01. COLORS ═══ -->
+    <section class="ds-section" id="colors">
+      <div class="ds-section-title">01 — Color Palette</div>
+      <p class="ds-section-desc">
+        Drawn directly from the logo — deep coffee browns, organic leaf greens, warm creams, and red coffee cherry accents. Every color should feel like it came from the earth of Nuwakot.
+      </p>
+
+      <!-- Coffee Browns -->
+      <div class="color-group">
+        <div class="color-group-label">Coffee Browns — Primary</div>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background:#FAF6F1"><span>50</span></div>
+          <div class="color-swatch dark-text" style="background:#F3ECE1"><span>100</span></div>
+          <div class="color-swatch dark-text" style="background:#E5D5BF"><span>200</span></div>
+          <div class="color-swatch dark-text" style="background:#D4BA96"><span>300</span></div>
+          <div class="color-swatch dark-text" style="background:#A8845A"><span>400</span></div>
+          <div class="color-swatch light-text" style="background:#7A5C3A"><span>500</span></div>
+          <div class="color-swatch light-text" style="background:#5E4429"><span>600</span></div>
+          <div class="color-swatch light-text" style="background:#46321D"><span>700</span></div>
+          <div class="color-swatch light-text" style="background:#2E2114"><span>800</span></div>
+          <div class="color-swatch light-text" style="background:#1A120A"><span>900</span></div>
+          <div class="color-swatch light-text" style="background:#0F0A06"><span>950</span></div>
+        </div>
+      </div>
+
+      <!-- Leaf Greens -->
+      <div class="color-group">
+        <div class="color-group-label">Leaf Greens — Secondary</div>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background:#F4F8F0"><span>50</span></div>
+          <div class="color-swatch dark-text" style="background:#E5EDDB"><span>100</span></div>
+          <div class="color-swatch dark-text" style="background:#CDDDBB"><span>200</span></div>
+          <div class="color-swatch dark-text" style="background:#A8C48E"><span>300</span></div>
+          <div class="color-swatch dark-text" style="background:#7BA35B"><span>400</span></div>
+          <div class="color-swatch light-text" style="background:#5A7F3C"><span>500</span></div>
+          <div class="color-swatch light-text" style="background:#466530"><span>600</span></div>
+          <div class="color-swatch light-text" style="background:#354D24"><span>700</span></div>
+          <div class="color-swatch light-text" style="background:#263619"><span>800</span></div>
+          <div class="color-swatch light-text" style="background:#1A2511"><span>900</span></div>
+        </div>
+      </div>
+
+      <!-- Cherry Reds -->
+      <div class="color-group">
+        <div class="color-group-label">Cherry Red — Accent</div>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background:#D4543A"><span>400</span></div>
+          <div class="color-swatch light-text" style="background:#B8412B"><span>500</span></div>
+          <div class="color-swatch light-text" style="background:#943321"><span>600</span></div>
+          <div class="color-swatch light-text" style="background:#6E2618"><span>700</span></div>
+        </div>
+      </div>
+
+      <!-- Creams -->
+      <div class="color-group">
+        <div class="color-group-label">Cream — Backgrounds</div>
+        <div class="color-row">
+          <div class="color-swatch dark-text" style="background:#FFFDF9; border: 1px solid #E8DCC9"><span>50</span></div>
+          <div class="color-swatch dark-text" style="background:#FDF8F0"><span>100</span></div>
+          <div class="color-swatch dark-text" style="background:#F5EDE0"><span>200</span></div>
+          <div class="color-swatch dark-text" style="background:#E8DCC9"><span>300</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 02. TYPOGRAPHY ═══ -->
+    <section class="ds-section" id="typography">
+      <div class="ds-section-title">02 — Typography</div>
+      <p class="ds-section-desc">
+        Three typefaces working in harmony. DM Serif Display for headings brings warmth and elegance. General Sans for body text provides clean readability. Instrument Serif for accent moments — pull quotes, special statements.
+      </p>
+
+      <!-- Display sizes -->
+      <div class="type-specimen">
+        <div class="type-label">Display XL — Hero Headlines</div>
+        <div class="type-display-xl">From the Hills<br/>of Nepal</div>
+        <div class="type-meta">DM Serif Display · clamp(3.5rem, 8vw, 7rem) · line-height: 0.95 · tracking: -0.02em</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Display LG — Section Heroes</div>
+        <div class="type-display-lg">Crafted with Care</div>
+        <div class="type-meta">DM Serif Display · clamp(2.8rem, 6vw, 5.5rem) · line-height: 0.95</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Display — Big Statements</div>
+        <div class="type-display">Built with Purpose</div>
+        <div class="type-meta">DM Serif Display · clamp(2.2rem, 4.5vw, 4rem) · line-height: 1.0</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Heading XL — Section Titles</div>
+        <div class="type-heading-xl">Where Every Bean Begins</div>
+        <div class="type-meta">DM Serif Display · clamp(1.8rem, 3.5vw, 3rem) · line-height: 1.1</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Heading LG</div>
+        <div class="type-heading-lg">Roasted to Reveal</div>
+        <div class="type-meta">DM Serif Display · clamp(1.5rem, 2.5vw, 2.25rem) · line-height: 1.15</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Heading</div>
+        <div class="type-heading">Grinding to Perfection</div>
+        <div class="type-meta">DM Serif Display · clamp(1.25rem, 2vw, 1.75rem) · line-height: 1.2</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Accent / Pull Quote</div>
+        <div class="type-accent" style="font-size: clamp(1.5rem, 3vw, 2.25rem); line-height: 1.4; color: var(--ink-light);">"Every cup of coffee tells a story, from the garden to your hands."</div>
+        <div class="type-meta">Instrument Serif Italic · clamp(1.5rem, 3vw, 2.25rem) · line-height: 1.4</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Overline</div>
+        <div class="type-overline">Our Origin Story</div>
+        <div class="type-meta">General Sans 600 · 0.75rem · tracking: 0.2em · uppercase</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Body Large</div>
+        <div class="type-body-lg">At Bagaicha Bliss, every journey begins long before it reaches your hands. It starts in sun-kissed coffee gardens where rich soil, fresh air, and careful cultivation shape the character of each bean.</div>
+        <div class="type-meta">General Sans 400 · 1.125rem · line-height: 1.7</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Body</div>
+        <div class="type-body">From harvest to roast, every stage is handled with intention. Only the finest cherries are selected, processed with care, and roasted in precise conditions that unlock their unique flavor profile.</div>
+        <div class="type-meta">General Sans 400 · 1rem · line-height: 1.7</div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="type-specimen">
+        <div class="type-label">Body Small / Caption</div>
+        <div class="type-body-sm">Nuwakot District, Nepal · 1,200m altitude · Hand-picked Arabica · Shade-grown organic</div>
+        <div class="type-meta">General Sans 400 · 0.875rem · line-height: 1.6</div>
+      </div>
+    </section>
+
+    <!-- ═══ 03. COMPONENTS ═══ -->
+    <section class="ds-section" id="components">
+      <div class="ds-section-title">03 — Components</div>
+      <p class="ds-section-desc">
+        Core UI elements for the site — buttons, labels, dividers, and step indicators. Everything uses sharp edges (no rounded buttons) for a premium editorial feel.
+      </p>
+
+      <div class="component-grid">
+
+        <!-- Buttons -->
+        <div>
+          <div class="type-label" style="margin-bottom: 1rem;">Buttons</div>
+          <div class="btn-row">
+            <button class="btn btn-primary"><span>Discover Our Story</span></button>
+            <button class="btn btn-outline">Learn More</button>
+            <button class="btn btn-text">View Process →</button>
+            <button class="btn btn-accent"><span>Get in Touch</span></button>
+          </div>
+        </div>
+
+        <!-- Overline with line -->
+        <div>
+          <div class="type-label" style="margin-bottom: 1rem;">Overline Accent</div>
+          <div class="overline-accent">Our Origin</div>
+          <div style="margin-top: 1rem;"></div>
+          <div class="overline-accent">The Process</div>
+        </div>
+
+        <!-- Step indicators -->
+        <div>
+          <div class="type-label" style="margin-bottom: 1rem;">Step Indicators (Process Section)</div>
+          <div style="display: flex; gap: 3rem; flex-wrap: wrap;">
+            <div class="step-indicator">
+              <span class="num">01</span>
+              <span class="line"></span>
+              <span>HAND-PICKING</span>
+            </div>
+            <div class="step-indicator">
+              <span class="num">02</span>
+              <span class="line"></span>
+              <span>WET PROCESSING</span>
+            </div>
+            <div class="step-indicator">
+              <span class="num">03</span>
+              <span class="line"></span>
+              <span>NATURAL DRYING</span>
+            </div>
+            <div class="step-indicator">
+              <span class="num">04</span>
+              <span class="line"></span>
+              <span>ROASTING</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dividers -->
+        <div>
+          <div class="type-label" style="margin-bottom: 1rem;">Dividers</div>
+          <div class="divider"></div>
+          <div style="margin-top: 1.5rem;"></div>
+          <div class="divider-ornament">
+            <svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 4c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm4 10H8v-1c0-2 4-3.1 4-3.1s4 1.1 4 3.1v1z"/></svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 04. SHADOWS ═══ -->
+    <section class="ds-section" style="background: var(--cream-100);" id="shadows">
+      <div class="ds-section-title">04 — Shadows & Elevation</div>
+      <p class="ds-section-desc">Warm-tinted shadows that feel like natural light filtering through trees — never cold or blue.</p>
+
+      <div class="shadow-grid">
+        <div class="shadow-card" style="box-shadow: var(--shadow-warm);">
+          <div style="width:3rem;height:3rem;background:var(--coffee-200);border-radius:50%;margin:0 auto;"></div>
+          <div class="label">Warm</div>
+        </div>
+        <div class="shadow-card" style="box-shadow: var(--shadow-warm-lg);">
+          <div style="width:3rem;height:3rem;background:var(--coffee-200);border-radius:50%;margin:0 auto;"></div>
+          <div class="label">Warm LG</div>
+        </div>
+        <div class="shadow-card" style="box-shadow: var(--shadow-warm-xl);">
+          <div style="width:3rem;height:3rem;background:var(--coffee-200);border-radius:50%;margin:0 auto;"></div>
+          <div class="label">Warm XL</div>
+        </div>
+        <div class="shadow-card" style="box-shadow: inset 0 2px 8px rgba(122, 92, 58, 0.06);">
+          <div style="width:3rem;height:3rem;background:var(--coffee-200);border-radius:50%;margin:0 auto;"></div>
+          <div class="label">Inner Warm</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 05. SPACING ═══ -->
+    <section class="ds-section" id="spacing">
+      <div class="ds-section-title">05 — Spacing Scale</div>
+      <p class="ds-section-desc">Generous, fluid spacing using clamp() for a cinematic, breathable layout. These are the main rhythm tokens.</p>
+
+      <div class="spacing-demo">
+        <div class="spacing-bar-wrap">
+          <div class="spacing-bar-label">section</div>
+          <div class="spacing-bar" style="width: min(80%, 40rem);"><span class="spacing-bar-value">5rem → 10rem</span></div>
+        </div>
+        <div class="spacing-bar-wrap">
+          <div class="spacing-bar-label">section-sm</div>
+          <div class="spacing-bar" style="width: min(60%, 30rem);"><span class="spacing-bar-value">3rem → 6rem</span></div>
+        </div>
+        <div class="spacing-bar-wrap">
+          <div class="spacing-bar-label">block</div>
+          <div class="spacing-bar" style="width: min(35%, 17.5rem);"><span class="spacing-bar-value">2rem → 3.5rem</span></div>
+        </div>
+        <div class="spacing-bar-wrap">
+          <div class="spacing-bar-label">gutter</div>
+          <div class="spacing-bar" style="width: min(25%, 12.5rem);"><span class="spacing-bar-value">1.5rem → 2.5rem</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 06. GSAP ANIMATION REFERENCE ═══ -->
+    <section class="ds-section dark" id="animations">
+      <div class="ds-section-title">06 — GSAP Animation Patterns</div>
+      <p class="ds-section-desc">Expressive scroll-triggered animations using GSAP + ScrollTrigger. These are the recommended patterns for each section type.</p>
+
+      <div class="animation-grid">
+        <div class="anim-card" style="background: var(--coffee-800); border-color: var(--coffee-700);">
+          <h4 style="color: var(--cream-100);">Hero Reveal</h4>
+          <p style="color: var(--coffee-300);">Staggered text lines + fade-in image overlay on page load.</p>
+          <code>gsap.from('.hero-line', {
+  y: 80, opacity: 0,
+  duration: 1.2,
+  ease: 'power3.out',
+  stagger: 0.15,
+  delay: 0.3
+})</code>
+        </div>
+
+        <div class="anim-card" style="background: var(--coffee-800); border-color: var(--coffee-700);">
+          <h4 style="color: var(--cream-100);">Section Fade Up</h4>
+          <p style="color: var(--coffee-300);">Content blocks slide up and fade in as they enter viewport.</p>
+          <code>gsap.from(el, {
+  y: 60, opacity: 0,
+  duration: 1,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: el,
+    start: 'top 85%'
+  }
+})</code>
+        </div>
+
+        <div class="anim-card" style="background: var(--coffee-800); border-color: var(--coffee-700);">
+          <h4 style="color: var(--cream-100);">Process Flow</h4>
+          <p style="color: var(--coffee-300);">Steps reveal with organic timing — image scales, text slides.</p>
+          <code>gsap.from('.step-img', {
+  scale: 1.15, opacity: 0,
+  duration: 1.2,
+  ease: 'power2.out',
+  scrollTrigger: {
+    trigger: '.step',
+    start: 'top 75%'
+  }
+})</code>
+        </div>
+
+        <div class="anim-card" style="background: var(--coffee-800); border-color: var(--coffee-700);">
+          <h4 style="color: var(--cream-100);">Parallax Image</h4>
+          <p style="color: var(--coffee-300);">Background images move slower than scroll for depth.</p>
+          <code>gsap.to('.parallax-img', {
+  yPercent: -20,
+  ease: 'none',
+  scrollTrigger: {
+    trigger: '.parallax',
+    start: 'top bottom',
+    end: 'bottom top',
+    scrub: true
+  }
+})</code>
+        </div>
+
+        <div class="anim-card" style="background: var(--coffee-800); border-color: var(--coffee-700);">
+          <h4 style="color: var(--cream-100);">Text Split Reveal</h4>
+          <p style="color: var(--coffee-300);">Big headlines reveal word-by-word or line-by-line.</p>
+          <code>// Split text into words
+gsap.from('.word', {
+  y: '100%', opacity: 0,
+  duration: 0.8,
+  ease: 'power3.out',
+  stagger: 0.04,
+  scrollTrigger: {
+    trigger: '.headline',
+    start: 'top 80%'
+  }
+})</code>
+        </div>
+
+        <div class="anim-card" style="background: var(--coffee-800); border-color: var(--coffee-700);">
+          <h4 style="color: var(--cream-100);">Line Reveal</h4>
+          <p style="color: var(--coffee-300);">Decorative lines and dividers animate their width.</p>
+          <code>gsap.from('.line', {
+  scaleX: 0,
+  transformOrigin: 'left',
+  duration: 1,
+  ease: 'power2.inOut',
+  scrollTrigger: {
+    trigger: '.line',
+    start: 'top 85%'
+  }
+})</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 07. HERO MOCK ═══ -->
+    <section class="ds-section" style="padding: 0;" id="hero-mock">
+      <div style="padding: var(--gutter); padding-bottom: 0;">
+        <div class="ds-section-title">07 — Hero Section Mock</div>
+        <p class="ds-section-desc">Full-bleed photo hero with dark overlay, uppercase display heading, centered layout. Matches the reference site's editorial impact.</p>
+      </div>
+
+      <div class="mock-hero" style="margin-top: var(--block);">
+        <nav class="mock-nav">
+          <div class="mock-nav-logo">Bagaicha Bliss</div>
+          <ul class="mock-nav-links">
+            <li><a href="#">Origin</a></li>
+            <li><a href="#">Process</a></li>
+            <li><a href="#">Farmers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="overline-accent">Since 2015 · Nuwakot, Nepal</div>
+        <h2>Premium Coffee<br/>from the Hills<br/>of Nepal</h2>
+        <p>Single-origin Arabica, hand-picked at altitude, shade-grown organically by local farming families in the hills of Nuwakot.</p>
+        <button class="btn btn-primary" style="border: 1px solid rgba(255,255,255,0.2);"><span>Discover Our Story</span></button>
+      </div>
+    </section>
+
+    <!-- ═══ 08. BRAND STORY MOCK ═══ -->
+    <section class="ds-section" style="padding: 0;" id="story-mock">
+      <div class="mock-brand-story">
+        <div class="overline-accent">Our Story</div>
+        <h3>From Garden to Cup</h3>
+        <p>At Bagaicha Bliss, every journey begins long before it reaches your hands. It starts in sun-kissed coffee gardens where rich soil, fresh air, and careful cultivation shape the character of each bean. Here, patience is a virtue — cherries are allowed to ripen slowly, absorbing the best that nature has to offer.</p>
+      </div>
+    </section>
+
+    <!-- ═══ 09. PROCESS MOCK ═══ -->
+    <section class="ds-section" style="padding: 0;" id="process-mock">
+      <div class="mock-process">
+        <div class="mock-process-header">
+          <div class="overline-accent" style="justify-content: center;">The Journey</div>
+          <h3>Crafting Coffee, Step by Step</h3>
+        </div>
+
+        <!-- Step 01 -->
+        <div class="process-step">
+          <div class="process-step-content">
+            <div class="step-indicator">
+              <span class="num">01</span>
+              <span class="line"></span>
+            </div>
+            <h4>Hand-Picking the Cherries</h4>
+            <p>High in Nuwakot's hills, our journey starts in carefully nurtured coffee gardens. Each plant is grown with patience, care, and respect for the natural ecosystem that makes the region unique.</p>
+          </div>
+          <div class="process-step-image">
+            <img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?w=800&q=80" alt="Coffee cherries" />
+          </div>
+        </div>
+
+        <!-- Step 02 -->
+        <div class="process-step">
+          <div class="process-step-content">
+            <div class="step-indicator">
+              <span class="num">02</span>
+              <span class="line"></span>
+            </div>
+            <h4>Wet Processing</h4>
+            <p>After harvesting, the beans are carefully processed in small batches. The unique wet-processing method removes the fruit and allows the beans' natural flavors to develop clarity and depth.</p>
+          </div>
+          <div class="process-step-image">
+            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&q=80" alt="Coffee processing" />
+          </div>
+        </div>
+
+        <!-- Step 03 -->
+        <div class="process-step">
+          <div class="process-step-content">
+            <div class="step-indicator">
+              <span class="num">03</span>
+              <span class="line"></span>
+            </div>
+            <h4>Natural Drying</h4>
+            <p>Spread across raised drying beds under the Himalayan sun, the beans dry slowly and naturally. This patient process preserves the complex flavors that make our coffee distinctive.</p>
+          </div>
+          <div class="process-step-image">
+            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=800&q=80" alt="Coffee drying" />
+          </div>
+        </div>
+
+        <!-- Step 04 -->
+        <div class="process-step">
+          <div class="process-step-content">
+            <div class="step-indicator">
+              <span class="num">04</span>
+              <span class="line"></span>
+            </div>
+            <h4>Roasted with Intention</h4>
+            <p>Each batch is roasted in small quantities to unlock the full spectrum of flavor. Timing, temperature, and technique combine to create a balanced, rich profile unique to Nuwakot beans.</p>
+          </div>
+          <div class="process-step-image">
+            <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800&q=80" alt="Coffee roasting" />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 10. QUOTE MOCK ═══ -->
+    <section class="ds-section" style="padding: 0;" id="quote-mock">
+      <div class="mock-quote">
+        <div class="overline-accent" style="justify-content: center; color: var(--coffee-400); margin-bottom: 2rem;">
+          <span style="color: var(--coffee-400);">A Message from Our Farmers</span>
+        </div>
+        <blockquote>"Every cup of coffee tells a story. From the moment the beans are nurtured in the garden to the moment they reach your cup — patience, care, and nature guide every step."</blockquote>
+        <cite>— The Farmers of Nuwakot</cite>
+      </div>
+    </section>
+
+    <!-- ═══ 11. STATEMENT MOCK ═══ -->
+    <section class="ds-section" style="padding: 0;" id="statement-mock">
+      <div class="mock-statement">
+        <div class="overline-accent" style="justify-content: center; margin-bottom: 1.5rem;">Our Promise</div>
+        <h3>Grown with<br/>Purpose,<br/>Crafted with<br/>Heart</h3>
+      </div>
+    </section>
+
+    <!-- ═══ 12. FONT LOADING REFERENCE ═══ -->
+    <section class="ds-section" id="fonts-ref">
+      <div class="ds-section-title">08 — Font Loading Reference</div>
+      <p class="ds-section-desc">Copy-paste setup for your HTML. All fonts loaded via CDN — no self-hosting needed for GitHub Pages.</p>
+
+      <div style="background: var(--coffee-900); padding: 1.5rem; border-radius: 0.5rem; overflow-x: auto;">
+        <pre style="color: var(--leaf-300); font-size: 0.75rem; line-height: 1.6; margin: 0; white-space: pre-wrap;"><code>&lt;!-- Google Fonts: DM Serif Display + Instrument Serif --&gt;
+&lt;link rel="preconnect" href="https://fonts.googleapis.com" /&gt;
+&lt;link rel="preconnect" href="https://fonts.gstatic.com" crossorigin /&gt;
+&lt;link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet" /&gt;
+
+&lt;!-- Fontshare: General Sans --&gt;
+&lt;link href="https://api.fontshare.com/v2/css?f[]=general-sans@200,300,400,500,600,700&amp;display=swap" rel="stylesheet" /&gt;
+
+&lt;!-- GSAP + ScrollTrigger (for animations) --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"&gt;&lt;/script&gt;</code></pre>
+      </div>
+    </section>
+
+    <!-- ═══ 13. USAGE NOTES ═══ -->
+    <section class="ds-section" id="usage">
+      <div class="ds-section-title">09 — Usage Notes</div>
+
+      <div style="max-width: 42rem;">
+        <div class="type-heading-lg" style="margin-bottom: 1.5rem;">Design Principles</div>
+
+        <div style="margin-bottom: 2rem;">
+          <div class="type-heading" style="margin-bottom: 0.5rem;">Always warm, never cold</div>
+          <p class="type-body">Every shadow, border, and background should use warm tones from the coffee palette. Never use grey (#ccc, #999), use coffee-200, coffee-300 instead. Never use pure black (#000), use coffee-900 or coffee-950.</p>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <div class="type-heading" style="margin-bottom: 0.5rem;">Breathe generously</div>
+          <p class="type-body">Use the full section spacing tokens. Premium brands need room to breathe. If a section feels cramped, add more space. The rhythm of the scroll is part of the storytelling.</p>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <div class="type-heading" style="margin-bottom: 0.5rem;">Sharp edges, soft textures</div>
+          <p class="type-body">Buttons and cards use no border-radius (or very minimal). But backgrounds use grain texture, warm gradients, and organic photography. The contrast between sharp geometry and natural imagery creates premium tension.</p>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <div class="type-heading" style="margin-bottom: 0.5rem;">Text hierarchy is everything</div>
+          <p class="type-body">Always lead with an overline accent, then the heading, then body text. This creates a consistent visual rhythm across all sections. The overline with the horizontal line is your signature element.</p>
+        </div>
+
+        <div style="margin-bottom: 2rem;">
+          <div class="type-heading" style="margin-bottom: 0.5rem;">Grain is your friend</div>
+          <p class="type-body">The subtle grain overlay adds organic texture to the entire page. It prevents flat digital backgrounds from looking sterile. Keep it subtle (opacity ~0.35).</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+</body>
+</html>
