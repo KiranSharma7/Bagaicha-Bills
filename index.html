@@ -45,6 +45,10 @@
         position: relative;
         width: 100%;
         overflow: hidden;
+        aspect-ratio: 4/3;
+      }
+      @media (min-width: 768px) {
+        .hero-img-wrap { aspect-ratio: 16/7; }
       }
       .hero-img-wrap img {
         width: 100%;
@@ -53,37 +57,114 @@
         object-position: center 30%;
         display: block;
       }
+    <style>
+      html { scroll-behavior: smooth; }
+      /* Mobile menu */
+      .mobile-menu {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+        opacity: 0;
+      }
+      .mobile-menu.open {
+        max-height: 400px;
+        opacity: 1;
+      }
+      .mobile-menu a {
+        transform: translateY(-8px);
+        opacity: 0;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+      .mobile-menu.open a {
+        transform: translateY(0);
+        opacity: 1;
+      }
+      .mobile-menu.open a:nth-child(1) { transition-delay: 0.05s; }
+      .mobile-menu.open a:nth-child(2) { transition-delay: 0.1s; }
+      .mobile-menu.open a:nth-child(3) { transition-delay: 0.15s; }
+      .mobile-menu.open a:nth-child(4) { transition-delay: 0.2s; }
+      .mobile-menu.open a:nth-child(5) { transition-delay: 0.25s; }
+
+      /* Contact Modal */
+      .modal-overlay {
+        position: fixed; inset: 0; z-index: 100;
+        background: rgba(10, 10, 10, 0.6);
+        backdrop-filter: blur(4px);
+        opacity: 0; visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        display: flex; align-items: center; justify-content: center;
+        padding: 1.5rem;
+      }
+      .modal-overlay.open { opacity: 1; visibility: visible; }
+      .modal-panel {
+        background: #EFE9D9;
+        width: 100%; max-width: 480px;
+        border-radius: 1rem;
+        padding: 2.5rem 2rem 2rem;
+        position: relative;
+        transform: translateY(20px) scale(0.97);
+        opacity: 0;
+        transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+      }
+      .modal-overlay.open .modal-panel {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+      }
+      .modal-input {
+        width: 100%;
+        padding: 0.75rem 1rem;
+        background: transparent;
+        border: 1px solid rgba(26, 26, 26, 0.2);
+        border-radius: 0.5rem;
+        font-family: 'Neue Haas Grotesk Text', sans-serif;
+        font-size: 0.875rem;
+        color: #1A1A1A;
+        outline: none;
+        transition: border-color 0.2s ease;
+      }
+      .modal-input:focus { border-color: rgba(26, 26, 26, 0.5); }
+      .modal-input::placeholder { color: rgba(26, 26, 26, 0.35); }
+      textarea.modal-input { resize: vertical; min-height: 100px; }
     </style>
   </head>
   <body class="antialiased selection:bg-[#1A1A1A] selection:text-[#EFE9D9]">
 
     <!-- Navigation -->
-    <nav class="dark-nav px-6 py-4 border-b border-[#1A1A1A]/15">
+    <nav class="dark-nav px-6 py-4 border-b border-[#1A1A1A]/15 sticky top-0 bg-[#EFE9D9]/95 backdrop-blur-sm z-50">
       <div class="max-w-[1440px] mx-auto flex items-center justify-between">
 
         <a href="#">
-          <img src="logo.png" alt="Bagaicha Bliss" class="h-16 w-auto">
+          <img src="logo.png" alt="Bagaicha Bliss" class="h-10 md:h-16 w-auto">
         </a>
 
         <div class="hidden md:flex items-center space-x-10">
-          <a href="#" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Our Story</a>
-          <a href="#" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Origin</a>
-          <a href="#" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Process</a>
-          <a href="#" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Community</a>
+          <a href="#origin" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Origin</a>
+          <a href="#process" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Process</a>
+          <a href="#heritage" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Heritage</a>
+          <a href="#contact" class="text-xs tracking-[0.18em] uppercase transition-colors font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A]">Contact</a>
         </div>
 
         <div class="flex items-center space-x-5">
-          <button class="text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors">
-            <i data-lucide="search" class="w-4 h-4" stroke-width="1.5"></i>
-          </button>
-          <a href="#" class="hidden md:inline-block border border-[#1A1A1A]/30 text-[#1A1A1A] px-6 py-2 text-xs tracking-[0.18em] uppercase hover:bg-[#1A1A1A] hover:text-white transition-colors font-geist font-medium">
+          <button onclick="openContactModal()" class="hidden md:inline-block border border-[#1A1A1A]/30 text-[#1A1A1A] px-6 py-2 text-xs tracking-[0.18em] uppercase hover:bg-[#1A1A1A] hover:text-white transition-colors font-geist font-medium cursor-pointer">
             CONTACT US
-          </a>
-          <button class="md:hidden text-[#1A1A1A]">
-            <i data-lucide="menu" class="w-5 h-5" stroke-width="1.5"></i>
+          </button>
+          <button id="mobile-menu-btn" class="md:hidden text-[#1A1A1A]" onclick="toggleMobileMenu()">
+            <i data-lucide="menu" class="w-5 h-5" stroke-width="1.5" id="menu-icon-open"></i>
+            <i data-lucide="x" class="w-5 h-5 hidden" stroke-width="1.5" id="menu-icon-close"></i>
           </button>
         </div>
 
+      </div>
+
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu md:hidden">
+        <div class="max-w-[1440px] mx-auto flex flex-col pt-6 pb-4 border-t border-[#1A1A1A]/10 mt-4">
+          <a href="#origin" onclick="closeMobileMenu()" class="py-3 text-sm tracking-[0.18em] uppercase font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors">Origin</a>
+          <a href="#process" onclick="closeMobileMenu()" class="py-3 text-sm tracking-[0.18em] uppercase font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors">Process</a>
+          <a href="#heritage" onclick="closeMobileMenu()" class="py-3 text-sm tracking-[0.18em] uppercase font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors">Heritage</a>
+          <a href="#contact" onclick="closeMobileMenu()" class="py-3 text-sm tracking-[0.18em] uppercase font-geist font-medium text-[#1A1A1A]/70 hover:text-[#1A1A1A] transition-colors">Contact</a>
+          <button onclick="closeMobileMenu(); openContactModal();" class="mt-3 py-3 border border-[#1A1A1A]/30 text-center text-sm tracking-[0.18em] uppercase font-geist font-medium text-[#1A1A1A] hover:bg-[#1A1A1A] hover:text-white transition-colors cursor-pointer">Contact Us</button>
+        </div>
       </div>
     </nav>
 
@@ -102,15 +183,15 @@
         </p>
 
         <!-- Hero Image -->
-        <div class="hero-img-wrap rounded-2xl" style="aspect-ratio: 16/7;">
-          <img src="hero-image.jpg" alt="Nepali Coffee Farmer Picking Coffee Cherries in Nuwakot">
+        <div class="hero-img-wrap rounded-2xl">
+          <img src="Image/hero-image.jpg" alt="Nepali Coffee Farmer Picking Coffee Cherries in Nuwakot">
         </div>
 
       </div>
     </header>
 
     <!-- About Section -->
-    <section class="pt-16 pb-20">
+    <section id="origin" class="pt-16 pb-20">
       <div class="max-w-3xl mx-auto px-6 text-center mb-16">
         <h2 class="text-4xl md:text-5xl lg:text-[3.5rem] tracking-tight uppercase mb-12 font-black leading-[1.1]" style="font-family: 'Recoleta', Georgia, serif;">
           ROOTED IN NUWAKOT
@@ -134,17 +215,17 @@
       <div class="max-w-[1440px] mx-auto px-6">
         <div class="flex flex-col md:flex-row gap-3" style="height: 500px;">
           <div class="md:w-[30%] h-full overflow-hidden rounded-2xl">
-            <img src="https://images.unsplash.com/photo-1599058917212-d750089bc07e?q=80&w=2069&auto=format&fit=crop" alt="Coffee farmer among cherry plants" class="w-full h-full object-cover">
+            <img src="Image/nano-banana-2_A_realistic_portrait_of_a_Nepali_coffee_farmer_standing_in_a_coffee_farm_in_the_-2.jpg" alt="Coffee farmer among cherry plants" class="w-full h-full object-cover">
           </div>
           <div class="md:w-[70%] h-full overflow-hidden rounded-2xl">
-            <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=2070&auto=format&fit=crop" alt="Fresh coffee cup in warm setting" class="w-full h-full object-cover">
+            <img src="Image/nano-banana-2_A_realistic_cinematic_landscape_of_coffee_farming_land_in_the_hills_of_Nuwakot_N-0.jpg" alt="Coffee farming landscape in Nuwakot hills" class="w-full h-full object-cover">
           </div>
         </div>
       </div>
     </section>
 
     <!-- Timeline Section -->
-    <section class="py-28 bg-[#FFF1CB]">
+    <section id="process" class="py-28 bg-[#FFF1CB]">
       <div class="max-w-[1440px] mx-auto px-6">
         <div class="text-center mb-20">
           <h2 class="text-4xl md:text-5xl lg:text-[3.5rem] tracking-tight uppercase mb-6 font-black leading-[1.1]" style="font-family: 'Recoleta', Georgia, serif;">
@@ -164,7 +245,7 @@
             <!-- Step 1 -->
             <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Coffee growing in Nuwakot" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_highly_realistic_close-up_photograph_of_ripe_red_coffee_cherries_growing_on_a_-3.jpg" alt="Coffee cherries growing in Nuwakot" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -190,7 +271,7 @@
             <!-- Step 2 -->
             <div class="flex flex-col md:flex-row-reverse items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=1974&auto=format&fit=crop" alt="Hand-picking coffee cherries" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_realistic_close-up_image_of_human_hands_carefully_picking_ripe_coffee_cherries-1.jpg" alt="Hand-picking coffee cherries" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -216,7 +297,7 @@
             <!-- Step 3 -->
             <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=1974&auto=format&fit=crop" alt="Community empowerment" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_realistic_documentary-style_image_showing_Nepali_coffee_farmers_together_in_a_-2.jpg" alt="Nepali coffee farmers community" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -242,7 +323,7 @@
             <!-- Step 4 -->
             <div class="flex flex-col md:flex-row-reverse items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Premium coffee experience" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_realistic_photograph_of_coffee_beans_drying_naturally_in_a_rural_mountain_farm-2.jpg" alt="Coffee beans drying naturally" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -269,9 +350,9 @@
     </section>
 
     <!-- Video Promo Section -->
-    <section class="relative w-full overflow-hidden" style="min-height: 600px;">
+    <section id="heritage" class="relative w-full overflow-hidden" style="min-height: 600px;">
       <div class="absolute inset-0 z-0">
-        <img src="https://images.unsplash.com/photo-1587595431973-160d0d94add1?q=80&w=2076&auto=format&fit=crop" alt="Cafe background" class="w-full h-full object-cover">
+        <img src="Image/nano-banana-2_A_realistic_and_emotionally_grounded_image_of_a_rural_Nepali_agricultural_suppor-3.jpg" alt="Rural Nepali agricultural scene" class="w-full h-full object-cover">
         <div class="absolute inset-0 bg-[#2A1810]/80 mix-blend-multiply"></div>
       </div>
 
@@ -290,7 +371,7 @@
         <div class="w-full md:w-1/2 relative">
           <div class="p-2 shadow-2xl rounded-sm transform rotate-2 bg-white">
             <div class="relative aspect-video overflow-hidden rounded-sm group cursor-pointer">
-              <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=2070&auto=format&fit=crop" alt="Pour over" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              <img src="Image/gemini-2.5-flash-image_make_it_more_realistic._look_a_bit_ai_slop-0.jpg" alt="Bagaicha Bliss coffee experience" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
               <div class="absolute inset-0 flex items-center justify-center transition duration-300 group-hover:bg-black/40 bg-black/20">
                 <div class="rounded-full p-5 transform transition duration-300 group-hover:scale-110 bg-white text-black">
                   <i data-lucide="play" class="w-8 h-8 ml-1" stroke-width="1.5"></i>
@@ -311,7 +392,7 @@
     <section class="overflow-hidden bg-[#EFE9D9] pt-24 pb-16 px-6 relative">
       <!-- Top-right image -->
       <div class="hidden lg:block">
-        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?q=80&w=600&auto=format&fit=crop" class="absolute top-12 right-[6%] w-64 h-48 object-cover rounded-2xl shadow-xl rotate-12">
+        <img src="Image/nano-banana-2_A_highly_realistic_close-up_photograph_of_ripe_red_coffee_cherries_growing_on_a_-3.jpg" class="absolute top-12 right-[6%] w-64 h-48 object-cover rounded-2xl shadow-xl rotate-12">
       </div>
 
       <div class="max-w-[1440px] mx-auto relative z-10">
@@ -332,19 +413,46 @@
 
       <!-- Bottom scattered images -->
       <div class="hidden lg:flex justify-between items-end max-w-[1440px] mx-auto px-6 relative z-10">
-        <img src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?q=80&w=600&auto=format&fit=crop" class="w-56 h-64 object-cover rounded-2xl shadow-xl -rotate-6">
-        <img src="https://images.unsplash.com/photo-1498804103079-a6351b050096?q=80&w=600&auto=format&fit=crop" class="w-48 h-52 object-cover rounded-2xl shadow-xl rotate-3 -mb-4">
-        <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?q=80&w=600&auto=format&fit=crop" class="w-60 h-48 object-cover rounded-2xl shadow-xl -rotate-6">
+        <img src="Image/nano-banana-2_A_realistic_portrait_of_a_Nepali_coffee_farmer_standing_in_a_coffee_farm_in_the_-2.jpg" class="w-56 h-64 object-cover rounded-2xl shadow-xl -rotate-6">
+        <img src="Image/nano-banana-2_A_realistic_close-up_image_of_human_hands_carefully_picking_ripe_coffee_cherries-1.jpg" class="w-48 h-52 object-cover rounded-2xl shadow-xl rotate-3 -mb-4">
+        <img src="Image/nano-banana-2_A_realistic_cinematic_landscape_of_coffee_farming_land_in_the_hills_of_Nuwakot_N-0.jpg" class="w-60 h-48 object-cover rounded-2xl shadow-xl -rotate-6">
       </div>
     </section>
 
+    <!-- Contact Modal -->
+    <div id="contact-modal" class="modal-overlay" onclick="if(event.target===this)closeContactModal()">
+      <div class="modal-panel">
+        <button onclick="closeContactModal()" class="absolute top-4 right-4 text-[#1A1A1A]/40 hover:text-[#1A1A1A] transition-colors">
+          <i data-lucide="x" class="w-5 h-5" stroke-width="1.5"></i>
+        </button>
+
+        <h3 class="text-2xl tracking-tight uppercase font-black mb-1" style="font-family: 'Recoleta', Georgia, serif;">
+          GET IN TOUCH
+        </h3>
+        <p class="text-sm text-[#1A1A1A]/50 font-geist mb-6">We'd love to hear from you.</p>
+
+        <form onsubmit="event.preventDefault(); closeContactModal();" class="space-y-4">
+          <div class="flex gap-3">
+            <input type="text" placeholder="First name" class="modal-input" required>
+            <input type="text" placeholder="Last name" class="modal-input" required>
+          </div>
+          <input type="email" placeholder="Email address" class="modal-input" required>
+          <input type="text" placeholder="Subject" class="modal-input">
+          <textarea placeholder="Your message..." class="modal-input" required></textarea>
+          <button type="submit" class="w-full py-3 bg-[#1A1A1A] text-white text-xs tracking-[0.18em] uppercase font-geist font-medium rounded-lg hover:bg-[#333] transition-colors">
+            Send Message
+          </button>
+        </form>
+      </div>
+    </div>
+
     <!-- Footer -->
-    <footer class="bg-[#1A1A1A] pt-20 pb-10 px-6 text-white overflow-hidden">
+    <footer id="contact" class="bg-[#1A1A1A] pt-20 pb-10 px-6 text-white overflow-hidden">
       <div class="max-w-[1440px] mx-auto">
 
         <!-- Big Brand Name -->
-        <h2 class="text-[12vw] md:text-[9vw] leading-[0.85] tracking-tight uppercase text-center text-white/90 mb-16" style="font-family: 'Recoleta', Georgia, serif; font-weight: 900;">
-          BAGAICHA<br>BLISS
+        <h2 class="text-[12vw] md:text-[9vw] leading-[0.85] tracking-tight uppercase text-center text-white/90 mb-16 whitespace-nowrap" style="font-family: 'Recoleta', Georgia, serif; font-weight: 900;">
+          BAGAICHA BLISS
         </h2>
 
         <!-- Contact + Socials Row -->
@@ -457,6 +565,38 @@
       // Run after images load and on resize
       window.addEventListener('load', drawTimelineLine);
       window.addEventListener('resize', drawTimelineLine);
+
+      // Contact modal
+      function openContactModal() {
+        document.getElementById('contact-modal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+        lucide.createIcons();
+      }
+      function closeContactModal() {
+        document.getElementById('contact-modal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeContactModal();
+      });
+
+      // Mobile menu toggle
+      function toggleMobileMenu() {
+        var menu = document.getElementById('mobile-menu');
+        var iconOpen = document.getElementById('menu-icon-open');
+        var iconClose = document.getElementById('menu-icon-close');
+        menu.classList.toggle('open');
+        iconOpen.classList.toggle('hidden');
+        iconClose.classList.toggle('hidden');
+      }
+      function closeMobileMenu() {
+        var menu = document.getElementById('mobile-menu');
+        var iconOpen = document.getElementById('menu-icon-open');
+        var iconClose = document.getElementById('menu-icon-close');
+        menu.classList.remove('open');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+      }
     </script>
 
 </body></html>
