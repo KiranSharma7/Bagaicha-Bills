@@ -2,8 +2,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bagaicha Bliss | Origin</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    <script src="https://unpkg.com/lucide@latest" defer></script>
     <style>
       @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-thin.otf') format('opentype'); font-weight: 100; font-style: normal; }
       @font-face { font-family: 'Recoleta'; src: url('Fonts/Recoleta/fonnts.com-recoleta-light.otf') format('opentype'); font-weight: 300; font-style: normal; }
@@ -215,10 +215,10 @@
       <div class="max-w-[1440px] mx-auto px-6">
         <div class="flex flex-col md:flex-row gap-3" style="height: 500px;">
           <div class="md:w-[30%] h-full overflow-hidden rounded-2xl">
-            <img src="Image/nano-banana-2_A_realistic_portrait_of_a_Nepali_coffee_farmer_standing_in_a_coffee_farm_in_the_-2.jpg" alt="Coffee farmer among cherry plants" class="w-full h-full object-cover">
+            <img src="Image/nano-banana-2_A_realistic_portrait_of_a_Nepali_coffee_farmer_standing_in_a_coffee_farm_in_the_-2.jpg" alt="Coffee farmer among cherry plants" class="w-full h-full object-cover" loading="lazy">
           </div>
           <div class="md:w-[70%] h-full overflow-hidden rounded-2xl">
-            <img src="Image/nano-banana-2_A_realistic_cinematic_landscape_of_coffee_farming_land_in_the_hills_of_Nuwakot_N-0.jpg" alt="Coffee farming landscape in Nuwakot hills" class="w-full h-full object-cover">
+            <img src="Image/nano-banana-2_A_realistic_cinematic_landscape_of_coffee_farming_land_in_the_hills_of_Nuwakot_N-0.jpg" alt="Coffee farming landscape in Nuwakot hills" class="w-full h-full object-cover" loading="lazy">
           </div>
         </div>
       </div>
@@ -239,13 +239,13 @@
 
         <div class="relative" id="timeline-steps">
           <!-- Separate SVG lines between each step pair -->
-          <svg class="absolute inset-0 w-full h-full hidden md:block pointer-events-none" style="z-index:0;" id="timeline-line"></svg>
+          <svg class="absolute inset-0 w-full h-full hidden md:block pointer-events-none" style="z-index:0; overflow:visible;" id="timeline-line"></svg>
 
           <div class="space-y-28 relative" style="z-index:1;">
             <!-- Step 1 -->
             <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="Image/nano-banana-2_A_highly_realistic_close-up_photograph_of_ripe_red_coffee_cherries_growing_on_a_-3.jpg" alt="Coffee cherries growing in Nuwakot" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_highly_realistic_close-up_photograph_of_ripe_red_coffee_cherries_growing_on_a_-3.jpg" alt="Coffee cherries growing in Nuwakot" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" loading="lazy" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -271,7 +271,7 @@
             <!-- Step 2 -->
             <div class="flex flex-col md:flex-row-reverse items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="Image/nano-banana-2_A_realistic_close-up_image_of_human_hands_carefully_picking_ripe_coffee_cherries-1.jpg" alt="Hand-picking coffee cherries" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_realistic_close-up_image_of_human_hands_carefully_picking_ripe_coffee_cherries-1.jpg" alt="Hand-picking coffee cherries" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" loading="lazy" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -297,7 +297,7 @@
             <!-- Step 3 -->
             <div class="flex flex-col md:flex-row items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="Image/nano-banana-2_A_realistic_documentary-style_image_showing_Nepali_coffee_farmers_together_in_a_-2.jpg" alt="Nepali coffee farmers community" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_realistic_documentary-style_image_showing_Nepali_coffee_farmers_together_in_a_-2.jpg" alt="Nepali coffee farmers community" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" loading="lazy" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -323,7 +323,7 @@
             <!-- Step 4 -->
             <div class="flex flex-col md:flex-row-reverse items-center gap-10 lg:gap-16">
               <div class="w-full md:w-[30%]">
-                <img src="Image/nano-banana-2_A_realistic_photograph_of_coffee_beans_drying_naturally_in_a_rural_mountain_farm-2.jpg" alt="Coffee beans drying naturally" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" style="transform: rotate(-8deg);">
+                <img src="Image/nano-banana-2_A_realistic_photograph_of_coffee_beans_drying_naturally_in_a_rural_mountain_farm-2.jpg" alt="Coffee beans drying naturally" class="timeline-img w-full aspect-square object-cover rounded-2xl shadow-lg" loading="lazy" style="transform: rotate(-8deg);">
               </div>
               <div class="w-full md:w-[70%] space-y-5 text-left">
                 <div class="flex items-center gap-3 text-[#A16207]">
@@ -352,7 +352,7 @@
     <!-- Video Promo Section -->
     <section id="heritage" class="relative w-full overflow-hidden" style="min-height: 600px;">
       <div class="absolute inset-0 z-0">
-        <img src="Image/nano-banana-2_A_realistic_and_emotionally_grounded_image_of_a_rural_Nepali_agricultural_suppor-3.jpg" alt="Rural Nepali agricultural scene" class="w-full h-full object-cover">
+        <img src="Image/nano-banana-2_A_realistic_and_emotionally_grounded_image_of_a_rural_Nepali_agricultural_suppor-3.jpg" alt="Rural Nepali agricultural scene" class="w-full h-full object-cover" loading="lazy">
         <div class="absolute inset-0 bg-[#2A1810]/80 mix-blend-multiply"></div>
       </div>
 
@@ -371,7 +371,7 @@
         <div class="w-full md:w-1/2 relative">
           <div class="p-2 shadow-2xl rounded-sm transform rotate-2 bg-white">
             <div class="relative aspect-video overflow-hidden rounded-sm group cursor-pointer">
-              <img src="Image/gemini-2.5-flash-image_make_it_more_realistic._look_a_bit_ai_slop-0.jpg" alt="Bagaicha Bliss coffee experience" class="w-full h-full object-cover transition duration-700 group-hover:scale-105">
+              <img src="Image/gemini-2.5-flash-image_make_it_more_realistic._look_a_bit_ai_slop-0.jpg" alt="Bagaicha Bliss coffee experience" class="w-full h-full object-cover transition duration-700 group-hover:scale-105" loading="lazy">
               <div class="absolute inset-0 flex items-center justify-center transition duration-300 group-hover:bg-black/40 bg-black/20">
                 <div class="rounded-full p-5 transform transition duration-300 group-hover:scale-110 bg-white text-black">
                   <i data-lucide="play" class="w-8 h-8 ml-1" stroke-width="1.5"></i>
@@ -392,7 +392,7 @@
     <section class="overflow-hidden bg-[#EFE9D9] pt-24 pb-16 px-6 relative">
       <!-- Top-right image -->
       <div class="hidden lg:block">
-        <img src="Image/nano-banana-2_A_highly_realistic_close-up_photograph_of_ripe_red_coffee_cherries_growing_on_a_-3.jpg" class="absolute top-12 right-[6%] w-64 h-48 object-cover rounded-2xl shadow-xl rotate-12">
+        <img src="Image/nano-banana-2_A_highly_realistic_close-up_photograph_of_ripe_red_coffee_cherries_growing_on_a_-3.jpg" class="absolute top-12 right-[6%] w-64 h-48 object-cover rounded-2xl shadow-xl rotate-12" loading="lazy">
       </div>
 
       <div class="max-w-[1440px] mx-auto relative z-10">
@@ -413,9 +413,9 @@
 
       <!-- Bottom scattered images -->
       <div class="hidden lg:flex justify-between items-end max-w-[1440px] mx-auto px-6 relative z-10">
-        <img src="Image/nano-banana-2_A_realistic_portrait_of_a_Nepali_coffee_farmer_standing_in_a_coffee_farm_in_the_-2.jpg" class="w-56 h-64 object-cover rounded-2xl shadow-xl -rotate-6">
-        <img src="Image/nano-banana-2_A_realistic_close-up_image_of_human_hands_carefully_picking_ripe_coffee_cherries-1.jpg" class="w-48 h-52 object-cover rounded-2xl shadow-xl rotate-3 -mb-4">
-        <img src="Image/nano-banana-2_A_realistic_cinematic_landscape_of_coffee_farming_land_in_the_hills_of_Nuwakot_N-0.jpg" class="w-60 h-48 object-cover rounded-2xl shadow-xl -rotate-6">
+        <img src="Image/nano-banana-2_A_realistic_portrait_of_a_Nepali_coffee_farmer_standing_in_a_coffee_farm_in_the_-2.jpg" class="w-56 h-64 object-cover rounded-2xl shadow-xl -rotate-6" loading="lazy">
+        <img src="Image/nano-banana-2_A_realistic_close-up_image_of_human_hands_carefully_picking_ripe_coffee_cherries-1.jpg" class="w-48 h-52 object-cover rounded-2xl shadow-xl rotate-3 -mb-4" loading="lazy">
+        <img src="Image/nano-banana-2_A_realistic_cinematic_landscape_of_coffee_farming_land_in_the_hills_of_Nuwakot_N-0.jpg" class="w-60 h-48 object-cover rounded-2xl shadow-xl -rotate-6" loading="lazy">
       </div>
     </section>
 
